@@ -1,5 +1,5 @@
 /*
-    Bubble sort algorithm implementation that swaps values with pointres (passing values through references)
+    Bubble sort algorithm implementation that swaps values with pointers (passing values through references)
 */
 #include <stdio.h>
 
