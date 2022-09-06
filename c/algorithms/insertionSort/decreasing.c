@@ -1,3 +1,7 @@
+/*
+    Cormen exercise where you're supposed to change the Insertion Sort algorithm so it sorts elements in decreasing order
+*/
+
 #include <stdio.h>
 #define SIZE 5
 
@@ -11,7 +15,7 @@ void insertionSort(int *array, const int size) {
     for (int i = 1; i < size; i++) {
         key = array[i];
         j = i-1;
-        while (j >= 0 && array[j] > key) {
+        while (j >= 0 && array[j] < key) {
             array[j+1] = array[j];
             j--;
         }
@@ -27,7 +31,7 @@ void printArray(int *array, const int size) {
 }
 
 int main() {
-    int arr[] = {0, 2, 1, 4, 3};
+    int arr[] = {2, 5, 1, 4, 3};
     printf("Before sorting:\n");
     printArray(arr, SIZE);
     printf("After sorting:\n");
