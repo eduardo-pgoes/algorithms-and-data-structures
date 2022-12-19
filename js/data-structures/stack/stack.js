@@ -4,7 +4,7 @@ class Stack {
         this.top = -1;
     }
 
-    /*
+    /**
     *   Pushes an element into the array.
     *   @param {any} element - element to be pushed
     */
@@ -13,7 +13,7 @@ class Stack {
         this.data[this.top] = element;
     }
 
-    /*
+    /**
     *   Pops an element out of the stack.
     *   @return {element} data - element that has been popped
     */
@@ -24,7 +24,7 @@ class Stack {
         }
     }
 
-    /*
+    /**
     *   Checks the stack emptiness status.
     *   @return {number} - 1 if the stack is empty, 0 otherwise
     */
