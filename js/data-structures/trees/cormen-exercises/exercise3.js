@@ -5,13 +5,7 @@
 
 import { Stack } from "../../stack/stack";
 
-class TreeNode {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
-}
+import { TreeNode } from "../genericTreeNode";
 
 /**
  * @param {TreeNode} node 
