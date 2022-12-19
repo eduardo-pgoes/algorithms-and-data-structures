@@ -33,8 +33,4 @@ class Stack {
     }
 }
 
-let stack = new Stack();
-stack.push(3);
-stack.push(2);
-console.log("First element to be popped: ", stack.pop());
-console.log("Second element to be popped: ", stack.pop());
+export {Stack};
