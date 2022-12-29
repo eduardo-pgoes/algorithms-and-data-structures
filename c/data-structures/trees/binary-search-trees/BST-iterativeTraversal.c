@@ -11,6 +11,7 @@
 struct BSTNode* insertIntoBSTree(struct BSTNode*, int);
 struct BSTNode* newBSTNode(int);
 void inorderTraversal(struct BSTNode*);
+void deallocateTree(struct BSTNode*);
 
 /**
  * \struct Represents a binary search tree node.
@@ -66,6 +67,13 @@ void inorderTraversal(struct BSTNode *root) {
     inorderTraversal(root->right);
 }
 
+void deallocateTree(struct BSTNode *root) {
+    if (root == NULL) return;
+    deallocateTree(root->left);
+    deallocateTree(root->right);
+    free(root);
+}
+
 #pragma endregion BSTNode
 
 #pragma region Stack
@@ -86,8 +94,8 @@ struct stackNode* newStackNode(struct BSTNode*);
  * \param s Stack
  * \returns True or false (1, 0)
 */
-int isEmpty(struct stackNode *s) {
-    return (s == NULL) ? 1 : 0;
+int isEmpty(struct stackNode *head) {
+    return (head == NULL) ? 1 : 0;
 }
 
 /**
@@ -111,7 +119,6 @@ int push(struct stackNode **head, struct BSTNode* data) {
         return 1;
     }
 
-    ptr->data = data;
     // LIFO -> new stack's next pointer should point to the old stack, since it's at the top
     ptr->next = *head;
     *head = ptr;
@@ -148,8 +155,6 @@ struct BSTNode* pop(struct stackNode **head) {
     temp = *head;
     res = temp->data;
     (*head) = (*head)->next;
-
-    free(temp);
 
     return res;
 }
@@ -189,25 +194,17 @@ void iterativePreorderTraversal(struct BSTNode *root) {
     // Base case
     if (root == NULL) return;
 
-    struct stackNode *stack;
-    struct BSTNode *current;
-    push(&stack, root);
+    struct stackNode *stack = NULL;
+    struct BSTNode *current = root;
 
-    while (!isEmpty(stack)) {
-        current = pop(&stack);
-
-        if (isEmpty(stack)) {
-            return;
-        }
-        
-        printf("%d ", current->data);
-
-        if (current->right != NULL) {
-            push(&stack, current->right);
-        } 
-
-        if (current->left != NULL) {
-            push(&stack, current->left);
+    while (!isEmpty(stack) || current != NULL) {
+        if (current != NULL) {
+            push(&stack, current);
+            current = current->left;
+        } else {
+            current = pop(&stack);
+            printf("%d ", current->data);
+            current = current->right;
         }
     }
 }
@@ -216,14 +213,11 @@ void iterativePreorderTraversal(struct BSTNode *root) {
 
 int main() {
     struct BSTNode* root = NULL;
-    root = insertIntoBSTree(root, 3);
-    insertIntoBSTree(root, 3);
-    insertIntoBSTree(root, 2);
-    insertIntoBSTree(root, 4);
-    insertIntoBSTree(root, 7);
-    insertIntoBSTree(root, 6);
-    insertIntoBSTree(root, 8);
-    iterativePreorderTraversal(root);
 
+    root = insertIntoBSTree(root, 3);
+    insertIntoBSTree(root, 2);
+    insertIntoBSTree(root, 1);
+    iterativePreorderTraversal(root);
+    
     return 0;
 }
