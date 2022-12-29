@@ -12,6 +12,7 @@ void postorderTraversal(struct BSTNode*);
 void deallocateTree(struct BSTNode*);
 struct BSTNode* searchInBSTree(struct BSTNode*, int);
 struct BSTNode* removeFromBSTree(struct BSTNode*, int);
+int getTreeHeight(struct BSTNode*);
 
 /**
  * \struct Represents a binary search tree node.
@@ -156,6 +157,24 @@ struct BSTNode* removeFromBSTree(struct BSTNode *root, int data) {
         }
     }
     return root;
+}
+
+/**
+ * \brief Gets the height of a tree.
+ * \param root Pointer to the root node.
+ * \return Tree height
+*/
+int getTreeHeight(struct BSTNode *root) {
+    if (root == NULL) return 0;
+
+    int leftHeight = getTreeHeight(root->left);
+    int rightHeight = getTreeHeight(root->right);
+
+    if (leftHeight >= rightHeight) {
+        return leftHeight + 1;
+    } else {
+        return rightHeight + 1;
+    }
 }
 
 #pragma endregion BSTNode
