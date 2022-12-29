@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#pragma region BSTNode
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,7 +15,6 @@ void deallocateTree(struct BSTNode*);
 /**
  * \struct Represents a binary search tree node.
 */
-
 struct BSTNode {
     int data; /* Node data */
     struct BSTNode *left; /* Pointer to the binary search tree's left subtree */  
@@ -58,6 +56,10 @@ struct BSTNode* newBSTNode(int data) {
     return temp;
 }
 
+/**
+ * \brief Traverses the binary search tree in inorder recursively.
+ * \param root Pointer to the binary search tree root.
+*/
 void inorderTraversal(struct BSTNode *root) {
     if (root == NULL) {
         return;
@@ -67,6 +69,10 @@ void inorderTraversal(struct BSTNode *root) {
     inorderTraversal(root->right);
 }
 
+/**
+ * \brief Deallocates the memory to a tree and all of its subtrees.
+ * \param root Pointer to the binary search tree root.
+*/
 void deallocateTree(struct BSTNode *root) {
     if (root == NULL) return;
     deallocateTree(root->left);
@@ -78,6 +84,9 @@ void deallocateTree(struct BSTNode *root) {
 
 #pragma region Stack
 
+/**
+ * \struct Represents a tree node stack, implemented through linked lists.
+*/
 struct stackNode {
     struct stackNode *next;
     struct BSTNode *data;
@@ -163,6 +172,11 @@ struct BSTNode* pop(struct stackNode **head) {
 
 #pragma region iterativeAlgorithms
 
+
+/**
+ * \brief Traverses the binary search tree in inorder iteratively with stacks.
+ * \param root Pointer to the binary search tree root.
+*/
 void iterativeInorderTraversal(struct BSTNode *root) {
     // Base case
     if (root == NULL) return;
@@ -190,6 +204,10 @@ void iterativeInorderTraversal(struct BSTNode *root) {
     }
 }
 
+/**
+ * \brief Traverses the binary search tree in preorder iteratively with stacks.
+ * \param root Pointer to the binary search tree root.
+*/
 void iterativePreorderTraversal(struct BSTNode *root) {
     // Base case
     if (root == NULL) return;
